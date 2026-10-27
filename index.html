@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>قلم – مساعد مهارات الكتابة الأكاديمية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f3ec; --surface:#ffffff; --ink:#1b2a2f; --muted:#5d6b70;
+  --brand:#0f5c63; --brand-ink:#ffffff; --accent:#b8892b; --line:#e3ddd0;
+  --user:#0f5c63; --user-ink:#ffffff; --bot:#ffffff; --chip:#efe8d8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#10191b; --surface:#172326; --ink:#eae6db; --muted:#9db0b4;
+    --brand:#3aa7b0; --brand-ink:#0b1517; --accent:#d9a843; --line:#263539;
+    --user:#1f6f77; --user-ink:#ffffff; --bot:#172326; --chip:#213236;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#10191b; --surface:#172326; --ink:#eae6db; --muted:#9db0b4;
+  --brand:#3aa7b0; --brand-ink:#0b1517; --accent:#d9a843; --line:#263539;
+  --user:#1f6f77; --user-ink:#ffffff; --bot:#172326; --chip:#213236;
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;font-size:16px;line-height:1.75}
+.app{max-width:820px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface)}
+.logo{width:44px;height:44px;border-radius:14px;background:var(--brand);color:var(--brand-ink);
+  display:grid;place-items:center;font-size:24px;font-weight:800;position:relative;flex:none}
+.logo::after{content:"";position:absolute;bottom:7px;left:9px;right:9px;height:3px;border-radius:2px;background:var(--accent)}
+header h1{margin:0;font-size:19px;font-weight:800;line-height:1.3}
+header p{margin:0;font-size:13px;color:var(--muted)}
+.spacer{flex:1}
+.ghost{background:none;border:1px solid var(--line);color:var(--muted);border-radius:10px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:var(--brand)}
+main{flex:1;overflow-y:auto;padding:18px}
+.welcome{text-align:center;padding:10px 4px 6px}
+.welcome h2{margin:6px 0 4px;font-size:22px;font-weight:800}
+.welcome p{margin:0 auto 16px;max-width:520px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:6px}
+.card{text-align:right;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer;transition:.15s}
+.card:hover{border-color:var(--brand);transform:translateY(-2px)}
+.card b{display:block;font-size:15px;color:var(--brand)}
+.card span{font-size:13px;color:var(--muted);line-height:1.5;display:block}
+.msg{display:flex;margin:12px 0}
+.msg.user{justify-content:flex-start}
+.bubble{max-width:88%;padding:11px 15px;border-radius:18px;word-wrap:break-word;overflow-wrap:anywhere}
+.user .bubble{background:var(--user);color:var(--user-ink);border-top-right-radius:4px}
+.bot .bubble{background:var(--bot);border:1px solid var(--line);border-top-left-radius:4px}
+.bot{justify-content:flex-end;flex-direction:row-reverse}
+.bot{justify-content:flex-start}
+.bubble p{margin:0 0 8px}.bubble p:last-child{margin:0}
+.bubble ul,.bubble ol{margin:4px 0 8px;padding-inline-start:22px}
+.bubble code{background:var(--chip);padding:1px 6px;border-radius:6px;font-size:.92em}
+.bubble blockquote{margin:6px 0;padding:6px 12px;border-inline-start:3px solid var(--accent);background:var(--chip);border-radius:8px}
+.bubble h3{margin:8px 0 4px;font-size:16px;color:var(--brand)}
+.typing{display:inline-flex;gap:5px;padding:4px 0}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:b 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.note{font-size:13px;color:var(--muted);text-align:center;margin:10px 0}
+footer{padding:10px 14px 14px;background:var(--surface);border-top:1px solid var(--line)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
+.chip{flex:none;background:var(--chip);border:0;color:var(--ink);border-radius:999px;padding:5px 13px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip:hover{background:var(--brand);color:var(--brand-ink)}
+.row{display:flex;gap:10px;align-items:flex-end}
+textarea{flex:1;resize:none;max-height:140px;min-height:46px;border:1px solid var(--line);background:var(--bg);color:var(--ink);
+  border-radius:14px;padding:10px 14px;font:inherit;line-height:1.6;outline:none}
+textarea:focus{border-color:var(--brand)}
+.send{width:46px;height:46px;flex:none;border:0;border-radius:14px;background:var(--brand);color:var(--brand-ink);cursor:pointer;font-size:20px}
+.send:disabled{opacity:.45;cursor:not-allowed}
+.send svg{transform:scaleX(-1)}
+@media(max-width:520px){header p{display:none}.bubble{max-width:94%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">ق</div>
+    <div><h1>قلم</h1><p>مساعدك الذكي في مهارات الكتابة الأكاديمية</p></div>
+    <div class="spacer"></div>
+    <button class="ghost" id="clear" title="محادثة جديدة">محادثة جديدة</button>
+  </header>
+
+  <main id="log" aria-live="polite">
+    <section class="welcome" id="welcome">
+      <h2>أهلاً بك في «قلم» ✒️</h2>
+      <p>أساعدك على تطوير كتابتك البحثية: من صياغة العنوان والمقدمة، إلى التوثيق والمراجعة اللغوية. اختر موضوعاً أو اكتب سؤالك.</p>
+      <div class="grid">
+        <button class="card" data-q="ساعدني في صياغة سؤال بحثي وعنوان مناسب لبحثي"><b>العنوان والسؤال البحثي</b><span>حوّل فكرتك إلى سؤال محدد وقابل للبحث</span></button>
+        <button class="card" data-q="كيف أكتب مقدمة بحث أكاديمي قوية؟ أعطني الهيكل مع مثال"><b>المقدمة وبيان المشكلة</b><span>هيكل واضح مع مثال تطبيقي</span></button>
+        <button class="card" data-q="اشرح لي كيف أكتب مراجعة الأدبيات بطريقة تحليلية وليست سرداً"><b>مراجعة الأدبيات</b><span>من السرد إلى التحليل والمقارنة</span></button>
+        <button class="card" data-q="كيف أعيد صياغة نص من مصدر دون الوقوع في الانتحال؟ أعطني مثالاً قبل وبعد"><b>إعادة الصياغة والأمانة العلمية</b><span>تجنّب الانتحال بأمثلة عملية</span></button>
+        <button class="card" data-q="اشرح لي أسلوب التوثيق APA الإصدار السابع مع أمثلة للكتب والمقالات والمواقع"><b>التوثيق والمراجع</b><span>APA وMLA وشيكاغو وغيرها</span></button>
+        <button class="card" data-q="كيف أكتب ملخصاً (Abstract) احترافياً لبحثي؟ وما عناصره؟"><b>الملخص والخاتمة</b><span>اكتب ملخصاً مركّزاً في 250 كلمة</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="chips" id="chips">
+      <button class="chip" data-q="راجع هذه الفقرة لغوياً وأسلوبياً واقترح تحسينها:&#10;">مراجعة فقرة</button>
+      <button class="chip" data-q="أعطني روابط وعبارات انتقالية أكاديمية لربط الأفكار">عبارات انتقالية</button>
+      <button class="chip" data-q="ما الفرق بين المنهج الكمي والنوعي والمختلط؟ ومتى أختار كلاً منهما؟">منهج البحث</button>
+      <button class="chip" data-q="كيف أبني خطة زمنية لكتابة رسالتي خلال 3 أشهر؟">خطة الكتابة</button>
+      <button class="chip" data-q="كيف أرد على ملاحظات المحكّمين بأسلوب مهذب ومقنع؟">الرد على المحكّمين</button>
+    </div>
+    <div class="row">
+      <textarea id="inp" rows="1" placeholder="اكتب سؤالك أو الصق فقرتك هنا…"></textarea>
+      <button class="send" id="send" aria-label="إرسال">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var API_URL = "https://YOUR-WORKER.YOUR-SUBDOMAIN.workers.dev"; // ضع رابط الـ Worker هنا
+
+  var log = document.getElementById("log"), inp = document.getElementById("inp"),
+      sendBtn = document.getElementById("send"), welcome = document.getElementById("welcome");
+  var history = [], busy = false, ctrl = null;
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function inline(s){
+    return esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/`([^`]+)`/g,"<code>$1</code>");
+  }
+  function md(t){
+    var lines = t.split("\n"), out = [], list = null;
+    function close(){ if(list){ out.push("</"+list+">"); list = null; } }
+    lines.forEach(function(l){
+      var m;
+      if((m = l.match(/^\s*[-*•]\s+(.*)/))){ if(list!=="ul"){ close(); out.push("<ul>"); list="ul"; } out.push("<li>"+inline(m[1])+"</li>"); }
+      else if((m = l.match(/^\s*\d+[.)]\s+(.*)/))){ if(list!=="ol"){ close(); out.push("<ol>"); list="ol"; } out.push("<li>"+inline(m[1])+"</li>"); }
+      else if((m = l.match(/^#{1,4}\s+(.*)/))){ close(); out.push("<h3>"+inline(m[1])+"</h3>"); }
+      else if((m = l.match(/^>\s?(.*)/))){ close(); out.push("<blockquote>"+inline(m[1])+"</blockquote>"); }
+      else if(l.trim()===""){ close(); }
+      else { close(); out.push("<p>"+inline(l)+"</p>"); }
+    });
+    close();
+    return out.join("");
+  }
+  function scroll(){ log.scrollTop = log.scrollHeight; }
+  function add(role, html){
+    var d = document.createElement("div"); d.className = "msg " + role;
+    var b = document.createElement("div"); b.className = "bubble"; b.innerHTML = html;
+    d.appendChild(b); log.appendChild(d); scroll(); return b;
+  }
+  function setBusy(v){ busy = v; sendBtn.disabled = v; }
+
+  async function ask(text){
+    text = (text||"").trim();
+    if(!text || busy) return;
+    if(welcome){ welcome.remove(); welcome = null; }
+    add("user", "<p>"+esc(text).replace(/\n/g,"<br>")+"</p>");
+    history.push({role:"user", content:text});
+    inp.value = ""; inp.style.height = "auto";
+    setBusy(true);
+    var bub = add("bot", '<span class="typing"><i></i><i></i><i></i></span>');
+    ctrl = new AbortController();
+    try{
+      var r = await fetch(API_URL, {
+        method:"POST", signal:ctrl.signal,
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({messages:history.slice(-12)})
+      });
+      if(r.status===429) throw {code:"rate"};
+      if(!r.ok) throw {code:"http"};
+      var data = await r.json();
+      var out = (data && data.text) || "";
+      if(!out) throw {code:"empty"};
+      bub.innerHTML = md(out);
+      history.push({role:"assistant", content:out});
+    }catch(e){
+      var msg = (e && e.name==="AbortError") ? "تم إلغاء الطلب."
+              : (e && e.code==="rate") ? "عدد الطلبات كبير الآن، انتظر قليلاً ثم حاول مجدداً."
+              : "تعذّر الاتصال بالخادم. تأكد من إعداد رابط API_URL ثم أعد المحاولة.";
+      bub.innerHTML = "<p>"+msg+"</p>";
+      history.pop();
+    }
+    setBusy(false); scroll();
+  }
+
+  sendBtn.addEventListener("click", function(){ ask(inp.value); });
+  inp.addEventListener("keydown", function(e){
+    if(e.key==="Enter" && !e.shiftKey && !e.isComposing){ e.preventDefault(); ask(inp.value); }
+  });
+  inp.addEventListener("input", function(){ inp.style.height="auto"; inp.style.height=Math.min(inp.scrollHeight,140)+"px"; });
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("[data-q]"); if(!t) return;
+    var q = t.getAttribute("data-q");
+    if(t.classList.contains("chip") && /\n$/.test(q)){ inp.value = q; inp.focus(); return; }
+    ask(q);
+  });
+  document.getElementById("clear").addEventListener("click", function(){
+    if(ctrl){ try{ ctrl.abort(); }catch(e){} }
+    history = []; setBusy(false);
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>

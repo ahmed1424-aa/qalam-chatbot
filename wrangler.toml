@@ -1,0 +1,9 @@
+name = "qalam-chatbot"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# غيّرها إلى رابط موقعك على GitHub Pages، مثال: https://username.github.io
+ALLOWED_ORIGIN = "https://ahmed1424-aa.github.io"
+MODEL = "claude-sonnet-5-5"
+
